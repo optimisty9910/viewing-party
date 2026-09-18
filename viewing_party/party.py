@@ -1,6 +1,18 @@
 # ------------- WAVE 1 --------------------
 
 def create_movie(title, genre, rating):
+    """
+    # test case ["a", "b", 0] return ["a", "b", 0]
+    if not title and not genre and rating is None:
+        return None
+    else:
+        return {
+            "title": title,
+            "genre": genre,
+            "rating": rating
+            }
+    """
+    # test case ["a", "b", 0] return None
     if title and genre and rating:
         return {
             "title": title,
@@ -17,6 +29,24 @@ def add_to_watchlist(user_data, movie):
     user_data["watchlist"].append(movie)
     return user_data
 
+# iteration may go wrong with remove()
+""" def watch_movie(user_data, title):
+    watched = user_data["watched"]
+    watchlist = user_data["watchlist"]
+
+    new_watchlist = []
+
+    for movie in watchlist:
+        if movie["title"] == title:
+            watched.append(movie)
+            continue
+        else:
+            new_watchlist.append(movie)
+
+    user_data["watchlist"] = new_watchlist
+
+    return user_data """
+
 def watch_movie(user_data, title):
     for movie in user_data["watchlist"]:
         if movie["title"] == title:
@@ -27,6 +57,11 @@ def watch_movie(user_data, title):
 # -----------------------------------------
 # ------------- WAVE 2 --------------------
 def get_watched_avg_rating(user_data):
+    """
+    # avoid ZeroDivisionError
+    if not user_data["watched"] or len(user_data["watched"] == 0):
+        return 0.0
+    """
     if not user_data["watched"]:
         return 0.0
     total_rating = 0
